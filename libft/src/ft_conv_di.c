@@ -64,47 +64,48 @@ static int	ft_len_nbr(long long int *nbr, t_flags *flags)
 **	(flags->len & LEN_UP_L) ? nbr = nbr : 0;
 */
 
-static void	ft_conv_di_suite(char *str, int ret, long long int nbr,\
+static void	ft_conv_di_suite(char *str, int ret[2], long long int nbr,\
 		t_flags *flags)
 {
 	if (flags->prec)
 	{
-		ret -= flags->prec_val;
-		ft_memset((str + ret), '0', flags->prec_val);
+		ret[0] -= flags->prec_val;
+		ft_memset((str + ret[0]), '0', flags->prec_val);
 	}
 	if (flags->att & ATT_ZERO)
 	{
-		ret -= flags->width_val;
-		ft_memset((str + ret), '0', flags->width_val);
+		ret[0] -= flags->width_val;
+		ft_memset((str + ret[0]), '0', flags->width_val);
 	}
-	ret -= flags->len_sharp;
+	ret[0] -= flags->len_sharp;
 	if (nbr < 0)
-		*(str + ret) = '-';
+		*(str + ret[0]) = '-';
 	if (flags->att & ATT_PLUS)
-		*(str + ret) = '+';
-	ft_putstr(str);
+		*(str + ret[0]) = '+';
+	ft_putstr_fd(str, ret[1]);
 }
 
-int			ft_conv_di(long long int nbr, t_flags *flags)
+int			ft_conv_di(long long int nbr, t_flags *flags, int fd)
 {
 	char	*str_nbr;
 	char	*str;
-	int		ret;
+	int		ret[2];
 	int		len_str;
 	int		len_nbr;
 
+	ret[1] = fd;
 	len_nbr = ft_len_nbr(&nbr, flags);
 	len_str = ft_len_str(nbr, len_nbr, flags);
 	if (!(str = ft_strnew((size_t)len_str)))
 		return (EXIT_FAILURE);
 	ft_memset(str, ' ', len_str);
 	if (flags->att & ATT_MINUS)
-		ret = flags->len_sharp + flags->prec_val;
+		ret[0] = flags->len_sharp + flags->prec_val;
 	else
-		ret = len_str - len_nbr;
+		ret[0] = len_str - len_nbr;
 	str_nbr = ft_itoa_base(nbr, BASE_10);
-	(nbr < 0) ? ft_strncpy((str + ret), (str_nbr + 1), len_nbr)\
-		: ft_strncpy((str + ret), str_nbr, len_nbr);
+	(nbr < 0) ? ft_strncpy((str + ret[0]), (str_nbr + 1), len_nbr)\
+		: ft_strncpy((str + ret[0]), str_nbr, len_nbr);
 	ft_memdel((void **)&str_nbr);
 	ft_conv_di_suite(str, ret, nbr, flags);
 	ft_memdel((void **)&str);

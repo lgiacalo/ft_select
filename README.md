@@ -9,3 +9,5 @@ Toutes les modifications visuelles et la plupart de la mise en œuvre sont basé
 À la fin, vous devez quitter correctement le programme avec la touche d'échappement ou envoyer une liste des éléments sélectionnés au shell dans le format décrit par le sujet.
 
 Cela permet d'utiliser ft_select comme un moyen facile et convivial de sélectionner des éléments entre autres et de passer leur liste à toute autre commande dans le shell (par exemple, rm ft_select * .c).
+
+NORME LIBFT !!!! A CAUSE DE PRINTF

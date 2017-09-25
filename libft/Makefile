@@ -35,7 +35,7 @@ INC_PATH	= include
 
 OBJ_PATH	= obj
 
-SRC_NAME	= ft_strnsplit.c ft_atolli.c ft_arraydel.c ft_arraylen.c\
+SRC_NAME	= ft_fdprintf.c ft_strnsplit.c ft_atolli.c ft_arraydel.c ft_arraylen.c\
 			ft_isnumber.c ft_arrayprint.c ft_printf.c ft_flags_init.c ft_flags.c\
 			ft_conv_xuo.c ft_conv_s.c ft_conv_p.c ft_conv_di.c ft_conv_c.c ft_conv_b.c\
 			\

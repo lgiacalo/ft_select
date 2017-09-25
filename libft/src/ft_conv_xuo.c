@@ -72,7 +72,7 @@ static int	ft_len(unsigned long long int *nbr, t_flags *flags,\
 	return (1);
 }
 
-static int	ft_vide(t_flags *flags)
+static int	ft_vide(t_flags *flags, int fd)
 {
 	char	*str;
 
@@ -81,13 +81,13 @@ static int	ft_vide(t_flags *flags)
 		if (!(str = ft_strnew((size_t)flags->width_val)))
 			return (EXIT_FAILURE);
 		ft_memset(str, ' ', flags->width_val);
-		ft_putstr(str);
+		ft_putstr_fd(str, fd);
 		ft_memdel((void **)&str);
 	}
 	return (flags->width_val);
 }
 
-static void	ft_conv_xuo_suite(char *str, int len, t_flags *flags)
+static void	ft_conv_xuo_suite(char *str, int len, t_flags *flags, int fd)
 {
 	if (flags->prec)
 	{
@@ -111,10 +111,10 @@ static void	ft_conv_xuo_suite(char *str, int len, t_flags *flags)
 	}
 	if (flags->conv & CONV_UP_X)
 		str = ft_strupcase(str);
-	ft_putstr(str);
+	ft_putstr_fd(str, fd);
 }
 
-int			ft_conv_xuo(unsigned long long int nbr, t_flags *flags)
+int			ft_conv_xuo(unsigned long long int nbr, t_flags *flags, int fd)
 {
 	char	*base;
 	char	*str;
@@ -123,7 +123,7 @@ int			ft_conv_xuo(unsigned long long int nbr, t_flags *flags)
 	int		len_nbr;
 
 	if (!(ft_len(&nbr, flags, &base, &len_nbr)))
-		return (ft_vide(flags));
+		return (ft_vide(flags, fd));
 	len = ft_len_str(nbr, len_nbr, &flags);
 	if (!(str = ft_strnew((size_t)len)))
 		return (EXIT_FAILURE);
@@ -133,7 +133,7 @@ int			ft_conv_xuo(unsigned long long int nbr, t_flags *flags)
 	str_nbr = ft_pitoa_base(nbr, base);
 	ft_strncpy((str + len), str_nbr, len_nbr);
 	ft_memdel((void **)&str_nbr);
-	ft_conv_xuo_suite(str, len, flags);
+	ft_conv_xuo_suite(str, len, flags, fd);
 	len = ft_strlen(str);
 	ft_memdel((void **)&str);
 	return (len);

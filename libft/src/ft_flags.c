@@ -12,25 +12,25 @@
 
 #include "../include/ft_printf.h"
 
-int		ft_flags(va_list ap, t_flags *flags)
+int		ft_flags(va_list ap, t_flags *flags, int fd)
 {
 	int		len;
 
 	if (flags->conv & CONV_PERC)
-		len = ft_conv_c('%', flags);
+		len = ft_conv_c('%', flags, fd);
 	if (flags->conv & (CONV_I | CONV_D | CONV_UP_D))
-		len = ft_conv_di(va_arg(ap, long long int), flags);
+		len = ft_conv_di(va_arg(ap, long long int), flags, fd);
 	if (flags->conv\
 		& (CONV_X | CONV_UP_X | CONV_U | CONV_UP_U | CONV_O | CONV_UP_O))
-		len = ft_conv_xuo(va_arg(ap, unsigned long long int), flags);
+		len = ft_conv_xuo(va_arg(ap, unsigned long long int), flags, fd);
 	if (flags->conv & (CONV_P))
-		len = ft_conv_p(va_arg(ap, unsigned long long int), flags);
+		len = ft_conv_p(va_arg(ap, unsigned long long int), flags, fd);
 	if (flags->conv & (CONV_B))
-		len = ft_conv_b(va_arg(ap, unsigned long long int), flags);
+		len = ft_conv_b(va_arg(ap, unsigned long long int), flags, fd);
 	if (flags->conv & (CONV_C | CONV_UP_C))
-		len = ft_conv_c(va_arg(ap, int), flags);
+		len = ft_conv_c(va_arg(ap, int), flags, fd);
 	if (flags->conv & (CONV_S | CONV_UP_S))
-		len = ft_conv_s(va_arg(ap, unsigned long int), flags);
+		len = ft_conv_s(va_arg(ap, unsigned long int), flags, fd);
 	return (len);
 }
 

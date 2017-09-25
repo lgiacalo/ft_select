@@ -39,13 +39,13 @@ int				ft_flags_width(char **chaine, t_flags *flags, va_list ap);
 int				ft_flags_prec(char **chaine, t_flags *flags);
 int				ft_flags_len(char *chaine, char conv);
 
-int				ft_flags(va_list ap, t_flags *flags);
+int				ft_flags(va_list ap, t_flags *flags, int fd);
 
-int				ft_conv_xuo(unsigned long long int nbr, t_flags *flags);
-int				ft_conv_p(unsigned long long int nbr, t_flags *flags);
-int				ft_conv_b(unsigned long long int nbr, t_flags *flags);
-int				ft_conv_di(long long int nbr, t_flags *flags);
-int				ft_conv_s(unsigned long int nbr, t_flags *flags);
-int				ft_conv_c(int nbr, t_flags *flags);
+int				ft_conv_xuo(unsigned long long int nbr, t_flags *flags, int fd);
+int				ft_conv_p(unsigned long long int nbr, t_flags *flags, int fd);
+int				ft_conv_b(unsigned long long int nbr, t_flags *flags, int fd);
+int				ft_conv_di(long long int nbr, t_flags *flags, int fd);
+int				ft_conv_s(unsigned long int nbr, t_flags *flags, int fd);
+int				ft_conv_c(int nbr, t_flags *flags, int fd);
 
 #endif

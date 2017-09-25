@@ -27,7 +27,7 @@ static int	ft_len_str(int nbr, t_flags *flags)
 	return (ret);
 }
 
-static int	ft_conv_wchar(wchar_t str, t_flags *flags)
+static int	ft_conv_wchar(wchar_t str, t_flags *flags, int fd)
 {
 	char	*str_ret;
 	int		ret;
@@ -38,20 +38,20 @@ static int	ft_conv_wchar(wchar_t str, t_flags *flags)
 	ft_memset(str_ret, ' ', flags->width_val);
 	if (flags->att & ATT_MINUS)
 	{
-		ft_putwchar(str);
-		ft_putstr(str_ret);
+		ft_putwchar_fd(str, fd);
+		ft_putstr_fd(str_ret, fd);
 	}
 	else
 	{
 		(flags->att & ATT_ZERO) ? ft_memset(str_ret, '0', flags->width_val) : 0;
-		ft_putstr(str_ret);
-		ft_putwchar(str);
+		ft_putstr_fd(str_ret, fd);
+		ft_putwchar_fd(str, fd);
 	}
 	ft_memdel((void **)&str_ret);
 	return (ret);
 }
 
-static int	ft_conv_char(char str, t_flags *flags)
+static int	ft_conv_char(char str, t_flags *flags, int fd)
 {
 	char	*str_ret;
 	int		ret;
@@ -62,27 +62,27 @@ static int	ft_conv_char(char str, t_flags *flags)
 	ft_memset(str_ret, ' ', flags->width_val);
 	if (flags->att & ATT_MINUS)
 	{
-		ft_putchar(str);
-		ft_putstr(str_ret);
+		ft_putchar_fd(str, fd);
+		ft_putstr_fd(str_ret, fd);
 	}
 	else
 	{
 		(flags->att & ATT_ZERO) ? ft_memset(str_ret, '0', flags->width_val) : 0;
-		ft_putstr(str_ret);
-		ft_putchar(str);
+		ft_putstr_fd(str_ret, fd);
+		ft_putchar_fd(str, fd);
 	}
 	ft_memdel((void **)&str_ret);
 	return (ret);
 }
 
-int			ft_conv_c(int nbr, t_flags *flags)
+int			ft_conv_c(int nbr, t_flags *flags, int fd)
 {
 	int	ret;
 
 	if ((flags->conv & CONV_UP_C)\
 		|| ((flags->conv & CONV_C) && (flags->len & LEN_L)))
-		ret = ft_conv_wchar((wchar_t)nbr, flags);
+		ret = ft_conv_wchar((wchar_t)nbr, flags, fd);
 	else
-		ret = ft_conv_char((char)nbr, flags);
+		ret = ft_conv_char((char)nbr, flags, fd);
 	return (ret);
 }

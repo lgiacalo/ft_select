@@ -52,7 +52,7 @@ static int	ft_len(unsigned long long int *nbr, t_flags *flags)
 	return (len_nbr);
 }
 
-int			ft_conv_p(unsigned long long int nbr, t_flags *flags)
+int			ft_conv_p(unsigned long long int nbr, t_flags *flags, int fd)
 {
 	char	*str;
 	char	*str_nbr;
@@ -75,7 +75,7 @@ int			ft_conv_p(unsigned long long int nbr, t_flags *flags)
 	(flags->att & ATT_ZERO) ? (len -= flags->width_val) : 0;
 	(flags->att & ATT_ZERO) ? ft_memset((str + len), '0', flags->width_val) : 0;
 	ft_strncpy((str + len - 2), "0x", 2);
-	ft_putstr(str);
+	ft_putstr_fd(str, fd);
 	len = ft_strlen(str);
 	ft_memdel((void **)&str);
 	return (len);

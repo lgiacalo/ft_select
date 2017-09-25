@@ -49,7 +49,7 @@ static int	ft_len(unsigned long long int *nbr, t_flags *flags,\
 	return (1);
 }
 
-static int	ft_vide(t_flags *flags)
+static int	ft_vide(t_flags *flags, int fd)
 {
 	char	*str;
 
@@ -58,13 +58,13 @@ static int	ft_vide(t_flags *flags)
 		if (!(str = ft_strnew((size_t)flags->width_val)))
 			return (EXIT_FAILURE);
 		ft_memset(str, ' ', flags->width_val);
-		ft_putstr(str);
+		ft_putstr_fd(str, fd);
 		ft_memdel((void **)&str);
 	}
 	return (flags->width_val);
 }
 
-int			ft_conv_b(unsigned long long int nbr, t_flags *flags)
+int			ft_conv_b(unsigned long long int nbr, t_flags *flags, int fd)
 {
 	char	*base;
 	char	*str;
@@ -73,7 +73,7 @@ int			ft_conv_b(unsigned long long int nbr, t_flags *flags)
 	int		len_nbr;
 
 	if (!(ft_len(&nbr, flags, &base, &len_nbr)))
-		return (ft_vide(flags));
+		return (ft_vide(flags, fd));
 	len = ft_len_str(len_nbr, &flags);
 	if (!(str = ft_strnew((size_t)len)))
 		return (EXIT_FAILURE);
@@ -87,7 +87,7 @@ int			ft_conv_b(unsigned long long int nbr, t_flags *flags)
 	(flags->prec) ? ft_memset((str + len), '0', flags->prec_val) : 0;
 	(flags->att & ATT_ZERO) ? ft_memset((str), '0', flags->width_val) : 0;
 	len = ft_strlen(str);
-	ft_putstr(str);
+	ft_putstr_fd(str, fd);
 	ft_memdel((void **)&str);
 	return (len);
 }

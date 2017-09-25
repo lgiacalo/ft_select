@@ -13,7 +13,7 @@
 #ifndef FLAGS_H
 # define FLAGS_H
 
-# define COLOR(s,n) ft_putstr(s), (*i += n - 1)
+# define COLOR(s,n,fd) ft_putstr_fd_nb(s, fd), (*i += n - 1)
 
 # define PF_RED			"\033[31m"
 # define PF_GREEN		"\033[32m"
