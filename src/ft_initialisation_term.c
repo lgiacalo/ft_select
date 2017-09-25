@@ -16,7 +16,7 @@ void	ft_error(char *msg, int restaure)
 {
 	if (restaure)
 		ft_printf("Pensez a restaurer le terminal\n");
-	ft_printf("%s\n", msg);
+	ft_fdprintf(STDERR_FILENO, "%s\n", msg);
 	exit(EXIT_FAILURE);
 }
 

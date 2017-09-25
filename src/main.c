@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 
-	ft_fdprintf(1, "\n\t\tFT_SELECT : Debut ..[%d]....\n\n");
+	ft_fdprintf(1, "\n\t\tFT_SELECT : Debut ......\n\n");
 
 	struct termios	term1;
 	struct termios	term2;
