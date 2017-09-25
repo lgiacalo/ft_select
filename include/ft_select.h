@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/24 09:42:48 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/25 07:46:58 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <term.h>
 # include <termios.h>
 
+void	ft_initialisation_term(struct termios *term);
 
 #endif
