@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 16:25:14 by lgiacalo         ###   ########.fr       */
+/*   Created: 2017/09/26 14:39:45 by lgiacalo          #+#    #+#             */
+/*   Updated: 2017/09/26 14:43:09 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <termios.h>
+#include <unistd.h>
 
-# include "libft.h"
-# include <termcap.h>
-# include <term.h>
-# include <termios.h>
-
-typedef struct termios	termios;
-
-typedef struct	s_term
+int	main(void)
 {
-	termios		term;
-	termios		orig_term;
-}				t_term;
+	struct termios	terminal;
+	int				i;
 
-void		error(char *msg, int restaure);
-
-t_term		*term(void);
-void		term_init(void);
-void		term_original(void);
-
-#endif
+	fprintf(stdout, "FLUSH, dans 5 secondes\n");
+	sleep(5);
+	fprintf(stdout, "FLUSH !\n");
+	if (tcgetattr(STDIN_FILENO, &terminal) == 0)
+		tcsetattr(STDIN_FILENO, TCSAFLUSH, &terminal);
+	while ((i = fgetc(stdin)) != EOF)
+		fprintf(stdout, "%02X ", i);
+	return (EXIT_SUCCESS);
+}

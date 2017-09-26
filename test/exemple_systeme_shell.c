@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select.h                                        :+:      :+:    :+:   */
+/*   exemple_systeme_shell.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 16:25:14 by lgiacalo         ###   ########.fr       */
+/*   Created: 2017/09/26 14:58:06 by lgiacalo          #+#    #+#             */
+/*   Updated: 2017/09/26 14:59:41 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-# include "libft.h"
-# include <termcap.h>
-# include <term.h>
-# include <termios.h>
-
-typedef struct termios	termios;
-
-typedef struct	s_term
+int	main(void)
 {
-	termios		term;
-	termios		orig_term;
-}				t_term;
+	char	ligne[MAX_CANON];
 
-void		error(char *msg, int restaure);
-
-t_term		*term(void);
-void		term_init(void);
-void		term_original(void);
-
-#endif
+	while (1)
+	{
+		fprintf(stderr, "-> ");
+		if (fgets(ligne, MAX_CANON, stdin) == NULL)
+			break;
+		system(ligne);
+	}
+	return (0);
+}

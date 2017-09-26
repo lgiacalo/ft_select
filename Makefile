@@ -89,7 +89,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB)
 	$(SPY)$(CC) $(OPT) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
 
 $(NAME): $(OBJ_PATH) $(OBJ) $(LIB)
-	$(SPY)$(CC) -lncurses $(OPT) -o $(NAME) $(OBJ) $(LIB)
+	$(SPY)$(CC) -ltermcap $(OPT) -o $(NAME) $(OBJ) $(LIB)
 	$(SPY)echo "$(COLOR)$(NAME)\t\t[OK]$(FINCOLOR)"
 
 $(LIB) :
