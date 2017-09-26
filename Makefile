@@ -38,7 +38,8 @@ INC_PATH	=	include
 OBJ_PATH	=	obj
 
 SRC_NAME	=	main.c\
-				ft_initialisation_term.c
+				term.c\
+				error.c
 
 INC_NAME	=	ft_select.h
 
