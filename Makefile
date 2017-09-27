@@ -39,7 +39,8 @@ OBJ_PATH	=	obj
 
 SRC_NAME	=	main.c\
 				term.c\
-				error.c
+				error.c\
+				ft_dlist.c
 
 INC_NAME	=	ft_select.h
 

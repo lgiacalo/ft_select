@@ -20,16 +20,16 @@
 
 typedef struct termios	termios;
 
-typedef struct	s_term
+typedef struct		s_term
 {
-	termios		term;
-	termios		orig_term;
-}				t_term;
+	termios			term;
+	termios			orig_term;
+}					t_term;
 
-void		error(char *msg, int restaure);
+void				error(char *msg, int restaure);
 
-t_term		*term(void);
-void		term_init(void);
-void		term_original(void);
+t_term				*term(void);
+void				term_init(void);
+void				term_original(void);
 
 #endif
