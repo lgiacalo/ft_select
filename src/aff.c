@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dlist.h"
+#include "ft_select.h"
 
 void		ft_selectprint(t_select *lst)
 {
@@ -29,8 +29,8 @@ void		ft_dlstprint(t_dlist *lst)
 		ft_fdprintf(1, "Content_size	= [%zu]\n", lst->content_size);
 		ft_fdprintf(1, "Prev 		= [%0#x]\n", (unsigned int)lst->prev);
 		ft_fdprintf(1, "Next 		= [%0#x]\n", (unsigned int)lst->next);
-		ft_selectprint((t_select *)(lst->content));
-		lst = lst->next;
+		ft_selectprint(FT_SELECT(lst));
+		lst = FT_DLST_NEXT(lst);
 	}
 	ft_printf("==========================================\n");
 }

@@ -14,9 +14,14 @@
 # define FT_SELECT_H
 
 # include "libft.h"
+# include "ft_dlist.h"
 # include <termcap.h>
 # include <term.h>
 # include <termios.h>
+
+# define FT_SELECT(l) ((t_select *)(l->content))
+# define FT_SELECT_NEXT(l) ((t_select *)(l->next->content))
+# define FT_SELECT_PREV(l) ((t_select *)(l->prev->content))
 
 typedef struct termios	termios;
 
@@ -39,5 +44,8 @@ void				term_init(void);
 void				term_original(void);
 
 t_select			*args_init(char **argv, int argc);
+
+void				ft_selectprint(t_select *lst);
+void				ft_dlstprint(t_dlist *lst);
 
 #endif
