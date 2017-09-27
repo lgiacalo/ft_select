@@ -35,6 +35,9 @@ void				ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstdel(t_dlist *alst, void(*del)(void *, size_t));
 void				ft_dlstfree(t_dlist **alst, void (*del)(void *, size_t));
 
+void				ft_selectprint(t_select *lst);
+void				ft_dlstprint(t_dlist *lst);
+
 //# define FT_DLSTX_PREV(l, x) ((x*)(l)->head.prev)
 //# define FT_DLSTX_NEXT(l, x) ((x*)(l)->head.next)
 //# define FT_DLSTS_PREV(l) (FT_DLSTX_PREV(l, t_dlists))

@@ -26,10 +26,18 @@ typedef struct		s_term
 	termios			orig_term;
 }					t_term;
 
+typedef struct		s_select
+{
+	char			*str;
+	int				selected;
+}					t_select;
+
 void				error(char *msg, int restaure);
 
 t_term				*term(void);
 void				term_init(void);
 void				term_original(void);
+
+t_select			*args_init(char **argv, int argc);
 
 #endif
