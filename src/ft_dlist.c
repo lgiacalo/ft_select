@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 16:25:14 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/28 10:14:08 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,3 +112,7 @@ void	ft_dlstfree(t_dlist **alst, void (*del)(void *, size_t))
 	}
 	*alst = NULL;
 }
+
+/*
+**	Fonction del : doit free les elements malloc de la structure select
+*/

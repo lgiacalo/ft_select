@@ -6,26 +6,24 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 11:09:40 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/28 10:12:30 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	ft_fdprintf(1, "\n\t\tFT_SELECT : Debut ......\n\n");
-
 	t_select	*args;
 
+	ft_fdprintf(1, "\n\t\tFT_SELECT : Debut ......\n\n");
 	term_init();
 	args = args_init(argv, argc);
 
+	while(1);
 	return (0);
 }
 
 /*
-**
-**	Bug avec ft_printf mais avec ft_fdprintf
-**
+**	Bug avec ft_printf mais pas avec ft_fdprintf
 */

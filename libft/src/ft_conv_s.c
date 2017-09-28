@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 06:52:51 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/02/23 21:33:50 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/28 09:43:14 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	ft_conv_wchar(wchar_t *str, t_flags *flags, int fd)
 	if (!(str_ret = ft_strnew((size_t)(flags->width_val))))
 		return (EXIT_FAILURE);
 	ft_memset(str_ret, ' ', flags->width_val);
-	(flags->att & ATT_MINUS) ? ret = ft_putwstr_len(str, flags->prec_val, 1, fd)\
-									: 0;
+	(flags->att & ATT_MINUS) ? ret = ft_putwstr_len(str, \
+			flags->prec_val, 1, fd) : 0;
 	(flags->att & ATT_MINUS) ? ft_putstr_fd(str_ret, fd) : 0;
 	if (!(flags->att & ATT_MINUS))
 	{

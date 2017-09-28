@@ -1,5 +1,4 @@
 /* ************************************************************************** */
-
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_initialisation_term.c                           :+:      :+:    :+:   */
@@ -7,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 11:18:51 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/28 10:32:25 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +15,37 @@
 t_term	*term(void)
 {
 	static t_term	t;
+
 	return (&t);
+}
+
+int		verif_tcsetattr(termios *term)
+{
+	int		i;
+	termios	*ret;
+
+	i = -1;
+	if (tcgetattr(STDIN_FILENO, ret) == -1)
+		error("tcgetattr: Erreur", 0);
+	if (ret->c_iflag != term->c_iflag || ret->c_oflag != term->c_oflag\
+		|| ret->c_cflag != term->c_cflag || ret->c_lflag != term->c_lflag\
+		|| ret->c_ispeed != term->c_ispeed || ret->c_ospeed != term->c_ospeed)
+		return (0);
+	while (++i < NCCS)
+		if (ret->c_cc[i] != term->c_cc[i])
+			return (0);
+	return (1);
 }
 
 void	term_original(void)
 {
-	if(term())
+	if (term())
+	{
 		if (tcsetattr(STDIN_FILENO, 0, &term()->orig_term) == -1)
 			error("Restauration terminal: Erreur", 0);
+		if (!verif_tcsetattr(&term()->orig_term))
+			term_orginal();
+	}
 }
 
 void	term_init(void)
@@ -45,5 +67,4 @@ void	term_init(void)
 **	TODO:
 **	Fonction tcsetattr : indique une reussite si au moins un changement effectue
 **		Donc a re verifier avec tcgetattr !! voir livre linux
-**
 */
