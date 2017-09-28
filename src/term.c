@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/28 10:32:25 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/28 11:01:24 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		verif_tcsetattr(termios *term)
 	termios	*ret;
 
 	i = -1;
+	ret = NULL;
 	if (tcgetattr(STDIN_FILENO, ret) == -1)
 		error("tcgetattr: Erreur", 0);
 	if (ret->c_iflag != term->c_iflag || ret->c_oflag != term->c_oflag\
@@ -44,7 +45,7 @@ void	term_original(void)
 		if (tcsetattr(STDIN_FILENO, 0, &term()->orig_term) == -1)
 			error("Restauration terminal: Erreur", 0);
 		if (!verif_tcsetattr(&term()->orig_term))
-			term_orginal();
+			term_original();
 	}
 }
 
