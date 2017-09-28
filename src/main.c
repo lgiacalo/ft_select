@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/28 15:42:51 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/09/28 16:43:33 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	term_init();
 	args = args_init(argv, argc);
 
+	term_original();
 	return (0);
 }
 
