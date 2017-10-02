@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_init.c                                        :+:      :+:    :+:   */
+/*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 01:32:47 by lgiacalo         ###   ########.fr       */
+/*   Created: 2017/10/03 01:18:16 by lgiacalo          #+#    #+#             */
+/*   Updated: 2017/10/03 01:45:30 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_dlist	*args_init(char **argv, int argc)
+void	ft_len_max_args(t_dlist *args)
 {
-	t_select	new;
-	t_dlist		*alst;
-	t_dlist		*maillon;
-	int			i;
+	int	i;
+	int	len;
 
-	i = 0;
-	alst = NULL;
-	new.selected = 0;
-	while (++i < argc)
+	i = -1;
+	while (++i < env()->nbr_args)
 	{
-		new.ind = i - 1;
-		new.str = argv[i];
-		new.selected = 0;
-		maillon = ft_dlstnew((void *)(&new), sizeof(t_select));
-		ft_dlstadd_end(&alst, maillon);
+		len = ft_strlen(FT_SELECT(args)->str);
+		if (env()->len_max < len)
+			env()->len_max = len;
+		args = args->next;
 	}
-	env()->nbr_args = i - 1;
-	maillon->next = alst;
-	alst->prev = maillon;
-	return (alst);
+	env()->len_max++;
 }
+
+

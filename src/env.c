@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_init.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 01:32:47 by lgiacalo         ###   ########.fr       */
+/*   Created: 2017/10/03 01:06:28 by lgiacalo          #+#    #+#             */
+/*   Updated: 2017/10/03 01:30:58 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_dlist	*args_init(char **argv, int argc)
+t_env	*env(void)
 {
-	t_select	new;
-	t_dlist		*alst;
-	t_dlist		*maillon;
-	int			i;
+	static t_env	env;
 
-	i = 0;
-	alst = NULL;
-	new.selected = 0;
-	while (++i < argc)
-	{
-		new.ind = i - 1;
-		new.str = argv[i];
-		new.selected = 0;
-		maillon = ft_dlstnew((void *)(&new), sizeof(t_select));
-		ft_dlstadd_end(&alst, maillon);
-	}
-	env()->nbr_args = i - 1;
-	maillon->next = alst;
-	alst->prev = maillon;
-	return (alst);
+	return (&env);
+}
+
+void	env_init(t_dlist *args)
+{
+	t_env	*envv;
+
+	envv = env();
+	ft_len_max_args(args);
 }

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/28 16:32:15 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/02 21:34:18 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	mode_non_canonique(void)
 	t = term();
 	t->term.c_lflag &= ~(ICANON);
 	t->term.c_lflag &= ~(ECHO);
+	t->term.c_cc[VMIN] = 1;
+	t->term.c_cc[VTIME] = 0;
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
 		error("Erreur mode non canonique", 0);
 	if (!verif_tcsetattr(t->term))
@@ -78,7 +80,7 @@ void	term_init(void)
 }
 
 /*
-**	TODO:
+**	TODO: OK ! avec recursive un peu risque :/
 **	Fonction tcsetattr : indique une reussite si au moins un changement effectue
 **		Donc a re verifier avec tcgetattr !! voir livre linux
 */

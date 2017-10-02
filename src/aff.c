@@ -6,11 +6,23 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/02 21:27:20 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 01:42:29 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+void		ft_envprint(void)
+{
+	t_env	*envv;
+
+	envv = env();
+	ft_fdprintf(1, "Structure Env :\n");
+	ft_fdprintf(1, "\tNombre args	= [%d]\n", envv->nbr_args);
+	ft_fdprintf(1, "\tLen_max args	= [%d]\n\n", envv->len_max);
+	ft_printf("============================================\n");
+	ft_printf("============================================\n\n");
+}
 
 void		ft_selectprint(t_select *lst)
 {
@@ -22,9 +34,14 @@ void		ft_selectprint(t_select *lst)
 
 void		ft_dlstprint(t_dlist *lst)
 {
+	int	i;
+
+	i = 0;
 	ft_printf("Affichage double liste chainee : \n\n");
 	while (lst)
 	{
+		if (i != FT_SELECT(lst)->ind)
+			break;
 		ft_fdprintf(1, "========= Maillon ===> [%0#x] ========\n", lst);
 		ft_fdprintf(1, "Content		= [%x]\n", (unsigned int)(lst->content));
 		ft_fdprintf(1, "Content_size	= [%zu]\n", lst->content_size);
@@ -32,6 +49,8 @@ void		ft_dlstprint(t_dlist *lst)
 		ft_fdprintf(1, "Next 		= [%0#x]\n", (unsigned int)lst->next);
 		ft_selectprint(FT_SELECT(lst));
 		lst = FT_DLST_NEXT(lst);
+		i++;
 	}
-	ft_printf("==========================================\n");
+	ft_printf("============================================\n");
+	ft_printf("============================================\n\n");
 }
