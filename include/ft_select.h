@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 16:25:14 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/02 21:22:23 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_select
 {
 	char			*str;
 	int				selected;
+	int				ind;
 }					t_select;
 
 void				error(char *msg, int restaure);

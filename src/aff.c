@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/26 11:09:40 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/02 21:27:20 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void		ft_selectprint(t_select *lst)
 {
 	ft_fdprintf(1, "Structure Select :\n");
 	ft_fdprintf(1, "\tStr	 	= [%s]\n", lst->str);
-	ft_fdprintf(1, "\tSelectionne	= [%d]\n\n", lst->selected);
+	ft_fdprintf(1, "\tSelectionne	= [%d]\n", lst->selected);
+	ft_fdprintf(1, "\tIndice		= [%d]\n\n", lst->ind);
 }
 
 void		ft_dlstprint(t_dlist *lst)
