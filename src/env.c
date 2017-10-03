@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 01:06:28 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 02:44:37 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 02:56:28 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	env_init(t_dlist *args)
 	envv = env();
 	if (ioctl(0, TIOCGWINSZ, &envv->w) == -1)
 		error("Erreur : ioctl()", 1);
-	ft_len_max_args(args);
+	ft_padding(args);
 }

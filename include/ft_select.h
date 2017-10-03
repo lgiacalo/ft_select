@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 02:17:11 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 02:54:16 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_env
 {
 	struct winsize	w;
 	int				nbr_args;
-	int				len_max;
+	int				padding;
 }					t_env;
 
 void				error(char *msg, int restaure);
@@ -54,8 +54,8 @@ void				term_original(void);
 
 t_env				*env(void);
 void				env_init(t_dlist *args);
+void				ft_padding(t_dlist *args);
 
-void				ft_len_max_args(t_dlist *args);
 t_dlist				*args_init(char **argv, int argc);
 
 void				ft_selectprint(t_select *lst);

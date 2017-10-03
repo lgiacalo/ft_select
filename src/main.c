@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 02:50:13 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 03:02:03 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,17 @@
 void	affichage_args(t_dlist *args)
 {
 	int	i;
-	int	k;
 	int	nbr_arg_by_line;
 	
 	i = 0;
-	k = 0;
-	nbr_arg_by_line = env()->w.ws_col / env()->len_max;
+	nbr_arg_by_line = env()->w.ws_col / env()->padding;
 	ft_fdprintf(1, "\n");
 	while (i < env()->nbr_args)
 	{
-		ft_fdprintf(1, "%-*s", env()->len_max, FT_SELECT(args)->str);
+		ft_fdprintf(1, "%-*s", env()->padding, FT_SELECT(args)->str);
 		i++;
-		k++;
-		args = args->next;
-		if (k == nbr_arg_by_line && !(k = 0))
+		args = FT_DLST_NEXT(args);
+		if (i % nbr_arg_by_line == 0)
 			ft_fdprintf(1, "\n");
 	}
 }
@@ -68,6 +65,8 @@ int		main(int argc, char **argv)
 	int		key;
 	t_dlist	*args;
 
+	if (argc < 2)
+		return (0);
 	args = initialisation(argc, argv);
 	key = boucle(args);
 	ft_fdprintf(1, "Sortie avec la touche [%d]\n", key);
