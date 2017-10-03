@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/02 21:34:18 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:52:52 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_term	*term(void)
 	return (&t);
 }
 
-int		verif_tcsetattr(termios term)
+int		verif_tcsetattr(struct termios term)
 {
-	int		i;
-	termios	ret;
+	int				i;
+	struct termios	ret;
 
 	i = -1;
 	if (tcgetattr(STDIN_FILENO, &ret) == -1)

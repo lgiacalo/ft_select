@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 22:06:07 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:30:31 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_dlist	*args_init(char **argv, int argc)
 	new.selected = 0;
 	while (++i < argc)
 	{
-		new.ind = i - 1;
 		new.str = argv[i];
 		new.selected = 0;
 		maillon = ft_dlstnew((void *)(&new), sizeof(t_select));

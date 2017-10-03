@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:14:14 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:56:20 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t))
 	}
 }
 
-void	ft_dlstdel(t_dlist *alst, void(*del)(void *, size_t))
+void	ft_dlstdel(t_dlist *alst, void (*del)(void *, size_t))
 {
 	if (alst->next)
 		alst->next->prev = alst->prev;

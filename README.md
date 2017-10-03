@@ -10,6 +10,6 @@ Toutes les modifications visuelles et la plupart de la mise en œuvre sont basé
 
 Cela permet d'utiliser ft_select comme un moyen facile et convivial de sélectionner des éléments entre autres et de passer leur liste à toute autre commande dans le shell (par exemple, rm ft_select * .c).
 
-NORME LIBFT !!!! A CAUSE DE PRINTF
 
 BUG BUG !!!!!! ft_printf
+signal !! verifier avec $() et ctrl-z / bg / fg

@@ -40,7 +40,6 @@ OBJ_PATH	=	obj
 SRC_NAME	=	main.c\
 				term.c\
 				env.c\
-				error.c\
 				ft_dlist.c\
 				args_init.c\
 				fonctions.c\

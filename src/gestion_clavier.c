@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 22:36:27 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:07:45 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:51:40 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	gestion_end(t_dlist *args, int key)
 {
 	if (key == KEY_RETURN)
-		aff_args_end(args);		
+		aff_args_end(args);
 }
 
 void	gestion_fleche(int key)
@@ -32,7 +32,7 @@ void	gestion_fleche(int key)
 			? e->curseur - e->args_byline : e->curseur;
 	else if (key == KEY_FD)
 		e->curseur = ((e->curseur + e->args_byline) > (e->nbr_args - 1))
-			? e->curseur : (e->curseur + e->args_byline); 
+			? e->curseur : (e->curseur + e->args_byline);
 }
 
 void	gestion_space(t_dlist *args, int key)

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:06:27 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:53:09 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,16 @@
 # define FT_SELECT_NEXT(l) ((t_select *)(l->next->content))
 # define FT_SELECT_PREV(l) ((t_select *)(l->prev->content))
 
-typedef struct termios	termios;
-
 typedef struct		s_term
 {
-	termios			term;
-	termios			orig_term;
+	struct termios	term;
+	struct termios	orig_term;
 }					t_term;
 
 typedef struct		s_select
 {
 	char			*str;
 	int				selected;
-	int				ind; //inutile
 }					t_select;
 
 typedef struct		s_env
