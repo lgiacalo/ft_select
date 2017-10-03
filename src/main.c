@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 01:52:01 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 02:50:13 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,21 @@
 void	affichage_args(t_dlist *args)
 {
 	int	i;
-	int	len;
+	int	k;
+	int	nbr_arg_by_line;
 	
-	(void)args;
 	i = 0;
+	k = 0;
+	nbr_arg_by_line = env()->w.ws_col / env()->len_max;
+	ft_fdprintf(1, "\n");
 	while (i < env()->nbr_args)
 	{
-		len = env()->len_max;
+		ft_fdprintf(1, "%-*s", env()->len_max, FT_SELECT(args)->str);
 		i++;
+		k++;
+		args = args->next;
+		if (k == nbr_arg_by_line && !(k = 0))
+			ft_fdprintf(1, "\n");
 	}
 }
 
@@ -38,7 +45,7 @@ int		boucle(t_dlist *args)
 		affichage_args(args);
 		key = 0;
 		read(0, &key, sizeof(int));
-		printf("\t[%d]\n", key);
+		printf("\n[%d]\n", key);
 	}
 	return (key);
 }
@@ -51,8 +58,8 @@ t_dlist	*initialisation(int argc, char **argv)
 	term_init();
 	args = args_init(argv, argc);
 	env_init(args);
-	ft_dlstprint(args);
-	ft_envprint();
+//	ft_dlstprint(args);
+//	ft_envprint();
 	return (args);
 }
 

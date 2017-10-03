@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 01:32:47 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 02:25:16 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ t_dlist	*args_init(char **argv, int argc)
 		ft_dlstadd_end(&alst, maillon);
 	}
 	env()->nbr_args = i - 1;
-	maillon->next = alst;
-	alst->prev = maillon;
+	if (argc > 1)
+	{
+		maillon->next = alst;
+		alst->prev = maillon;
+	}
 	return (alst);
 }

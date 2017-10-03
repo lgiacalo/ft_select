@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 01:31:52 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 02:17:11 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <termcap.h>
 # include <term.h>
 # include <termios.h>
+# include <sys/ioctl.h>
 
 # define FT_SELECT(l) ((t_select *)(l->content))
 # define FT_SELECT_NEXT(l) ((t_select *)(l->next->content))
@@ -40,6 +41,7 @@ typedef struct		s_select
 
 typedef struct		s_env
 {
+	struct winsize	w;
 	int				nbr_args;
 	int				len_max;
 }					t_env;
