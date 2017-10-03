@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 03:02:03 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 16:13:59 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ void	affichage_args(t_dlist *args)
 	ft_fdprintf(1, "\n");
 	while (i < env()->nbr_args)
 	{
-		ft_fdprintf(1, "%-*s", env()->padding, FT_SELECT(args)->str);
+		if (i == env()->curseur)
+			ft_putstr("\e[4m");
+		if (FT_SELECT(args)->selected)
+			ft_putstr("\e[7m");
+//		ft_fdprintf(1, "%-*s", env()->padding, FT_SELECT(args)->str);
+		ft_fdprintf(1, "%s", FT_SELECT(args)->str);
+		ft_putstr("\e[0m");
+		ft_fdprintf(1, "%-*c", env()->padding - ft_strlen(FT_SELECT(args)->str) - 1, ' ');
 		i++;
 		args = FT_DLST_NEXT(args);
 		if (i % nbr_arg_by_line == 0)
@@ -78,3 +85,7 @@ int		main(int argc, char **argv)
 /*
  **	Bug avec ft_printf mais pas avec ft_fdprintf
  */
+
+/*
+** 	Recalcule padding si modif taille fenetre !
+*/
