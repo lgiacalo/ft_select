@@ -44,7 +44,10 @@ SRC_NAME	=	main.c\
 				ft_dlist.c\
 				args_init.c\
 				fonctions.c\
-				aff.c
+				aff.c\
+				boucle.c\
+				args_aff.c\
+				gestion_clavier.c
 
 INC_NAME	=	ft_select.h
 

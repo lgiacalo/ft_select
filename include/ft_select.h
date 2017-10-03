@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 15:42:53 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:06:27 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "ft_dlist.h"
+# include "clavier.h"
 # include <termcap.h>
 # include <term.h>
 # include <termios.h>
@@ -36,7 +37,7 @@ typedef struct		s_select
 {
 	char			*str;
 	int				selected;
-	int				ind;
+	int				ind; //inutile
 }					t_select;
 
 typedef struct		s_env
@@ -44,6 +45,7 @@ typedef struct		s_env
 	struct winsize	w;
 	int				nbr_args;
 	int				padding;
+	int				args_byline;
 	int				curseur;
 }					t_env;
 
@@ -58,6 +60,16 @@ void				env_init(t_dlist *args);
 void				ft_padding(t_dlist *args);
 
 t_dlist				*args_init(char **argv, int argc);
+
+int					boucle(t_dlist **args);
+void				affichage_args(t_dlist *args);
+void				del(void *content, size_t content_size);
+void				aff_args_end(t_dlist *args);
+
+void				gestion_fleche(int key);
+void				gestion_space(t_dlist *args, int key);
+void				gestion_delete(t_dlist **alst, int key);
+void				gestion_end(t_dlist *args, int key);
 
 void				ft_selectprint(t_select *lst);
 void				ft_dlstprint(t_dlist *lst);

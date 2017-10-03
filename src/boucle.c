@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   boucle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/03 01:06:28 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 22:22:19 by lgiacalo         ###   ########.fr       */
+/*   Created: 2017/10/03 20:37:47 by lgiacalo          #+#    #+#             */
+/*   Updated: 2017/10/03 23:07:47 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_env	*env(void)
+int		boucle(t_dlist **args)
 {
-	static t_env	env;
+	int	key;
 
-	return (&env);
-}
-
-void	env_init(t_dlist *args)
-{
-	t_env	*envv;
-
-	envv = env();
-	if (ioctl(0, TIOCGWINSZ, &envv->w) == -1)
-		error("Erreur : ioctl()", 1);
-	ft_padding(args);
-//	envv->args_byline = envv->w.ws_col / envv->padding;
-	envv->args_byline = 4;
-	envv->curseur = 0;
+	key = 0;
+	while (key != KEY_RETURN && key != KEY_ESC && env()->nbr_args > 0)
+	{
+		affichage_args(*args);
+		key = 0;
+		read(0, &key, sizeof(int));
+		ft_fdprintf(1, "\n[%d]\n", key);
+		gestion_fleche(key);
+		gestion_space(*args, key);
+		gestion_delete(args, key);
+	}
+	if (env()->nbr_args == 0)
+		key = KEY_ESC;
+	return (key);
 }

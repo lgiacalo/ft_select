@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   clavier.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/03 01:06:28 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 22:22:19 by lgiacalo         ###   ########.fr       */
+/*   Created: 2017/10/03 20:41:45 by lgiacalo          #+#    #+#             */
+/*   Updated: 2017/10/03 21:02:53 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
+#ifndef CLAVIER_H
+# define CLAVIER_H
 
-t_env	*env(void)
-{
-	static t_env	env;
+# define KEY_RETURN		10
+# define KEY_ESC		27
+# define KEY_SPACE		32
+# define KEY_DELETE		127
+# define KEY_FU			4283163
+# define KEY_FR			4414235
+# define KEY_FD			4348699
+# define KEY_FL			4479771
 
-	return (&env);
-}
+# define AFF_SL			"\e[4m"
+# define AFF_VDI		"\e[7m"
 
-void	env_init(t_dlist *args)
-{
-	t_env	*envv;
-
-	envv = env();
-	if (ioctl(0, TIOCGWINSZ, &envv->w) == -1)
-		error("Erreur : ioctl()", 1);
-	ft_padding(args);
-//	envv->args_byline = envv->w.ws_col / envv->padding;
-	envv->args_byline = 4;
-	envv->curseur = 0;
-}
+#endif

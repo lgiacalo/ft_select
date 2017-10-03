@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/09/28 10:14:08 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:14:14 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_dlist	*ft_dlstat(t_dlist *lst, unsigned int nbr)
 
 void	ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t))
 {
-	if (alst)
+	if (alst && *alst)
 	{
 		del((*alst)->content, (*alst)->content_size);
 		free(*alst);
@@ -103,16 +103,18 @@ void	ft_dlstfree(t_dlist **alst, void (*del)(void *, size_t))
 	if (!(*alst))
 		return ;
 	temp = *alst;
-	while (temp)
+	while (temp && env()->nbr_args > 0)
 	{
 		*alst = temp;
 		temp = (temp)->next;
 		del((*alst)->content, (*alst)->content_size);
 		free(*alst);
+		env()->nbr_args--;
 	}
 	*alst = NULL;
 }
 
 /*
 **	Fonction del : doit free les elements malloc de la structure select
+** fonction ft_dlstfree bof bof
 */

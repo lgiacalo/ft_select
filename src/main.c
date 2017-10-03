@@ -6,53 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 16:13:59 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/03 23:14:19 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-#include <stdio.h>
-
-void	affichage_args(t_dlist *args)
-{
-	int	i;
-	int	nbr_arg_by_line;
-	
-	i = 0;
-	nbr_arg_by_line = env()->w.ws_col / env()->padding;
-	ft_fdprintf(1, "\n");
-	while (i < env()->nbr_args)
-	{
-		if (i == env()->curseur)
-			ft_putstr("\e[4m");
-		if (FT_SELECT(args)->selected)
-			ft_putstr("\e[7m");
-//		ft_fdprintf(1, "%-*s", env()->padding, FT_SELECT(args)->str);
-		ft_fdprintf(1, "%s", FT_SELECT(args)->str);
-		ft_putstr("\e[0m");
-		ft_fdprintf(1, "%-*c", env()->padding - ft_strlen(FT_SELECT(args)->str) - 1, ' ');
-		i++;
-		args = FT_DLST_NEXT(args);
-		if (i % nbr_arg_by_line == 0)
-			ft_fdprintf(1, "\n");
-	}
-}
-
-int		boucle(t_dlist *args)
-{
-	int	key;
-
-	(void)args;
-	key = 0;
-	while (key != 27 && key != 10)
-	{
-		affichage_args(args);
-		key = 0;
-		read(0, &key, sizeof(int));
-		printf("\n[%d]\n", key);
-	}
-	return (key);
-}
 
 t_dlist	*initialisation(int argc, char **argv)
 {
@@ -75,11 +33,12 @@ int		main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	args = initialisation(argc, argv);
-	key = boucle(args);
+	key = boucle(&args);
 	ft_fdprintf(1, "Sortie avec la touche [%d]\n", key);
-
 	term_original();
-	return (0);
+	gestion_end(args, key);
+	ft_dlstfree(&args, del);
+	return (EXIT_SUCCESS);
 }
 
 /*
