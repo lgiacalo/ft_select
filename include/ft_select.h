@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/04 15:49:28 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:08:49 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_env
 	int				padding;
 	int				args_byline;
 	int				curseur;
+	t_dlist			*args;
 }					t_env;
 
 void				error(char *msg, int restaure);
@@ -51,6 +52,7 @@ void				error(char *msg, int restaure);
 t_term				*term(void);
 void				term_init(void);
 void				term_original(void);
+void				mode_non_canonique(void);
 
 t_env				*env(void);
 void				env_init(t_dlist *args);
@@ -68,7 +70,7 @@ void				gestion_space(t_dlist *args, int key);
 void				gestion_delete(t_dlist **alst, int key);
 void				gestion_end(t_dlist *args, int key);
 
-void				gestion_signal(t_dlist *args);
+void				gestion_signal(void);
 
 void				ft_selectprint(t_select *lst);
 void				ft_dlstprint(t_dlist *lst);
