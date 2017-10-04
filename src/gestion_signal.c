@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:48:29 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 00:14:13 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 01:25:02 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,39 @@ extern const char * const sys_siglist[];
 void	gestion_susp(int key)
 {
 	(void)key;
+//	if (!isatty(1))
+//		return ;
+	if (!isatty(0))
+	{
+		ft_fdprintf(1, "\n je suis dans isatty susp\n");
+		return ;
+	}
+	ft_fdprintf(2, "\nJe suis dans SIGTSTP [%d]\n", ttyslot);
 	term_original();
 	signal(SIGTSTP, SIG_DFL);
 	ioctl(0, TIOCSTI, "\032");
 }
 
+void	gestion_out(int key)
+{
+
+	ft_fdprintf(2, "\nJe suis dans SIGTOUTT [%d]\n", ttyslot());
+	(void)key;
+//	signal(SIGTSTP, SIG_DFL);
+//	ioctl(0, TIOCSTI, "\032");
+}
+
 void	gestion_cont(int key)
 {
 	(void)key;
+	if (!isatty(0))
+	{
+		ft_fdprintf(1, "\n je suis dans isatty cont\n");
+		return ;
+	}
+	ft_fdprintf(2, "\nJe suis dans SIGCONT [%d]\n", ttyslot());
 	signal(SIGTSTP, gestion_susp);
+//	signal(SIGTTOU, gestion_out);
 	mode_non_canonique();
 	affichage_args(env()->args);
 }
@@ -33,6 +57,7 @@ void	gestion_cont(int key)
 void	gestion_int(int key)
 {
 	(void)key;
+	ft_fdprintf(2, "\nJe suis dans SIGINT\n");
 	term_original();
 	gestion_end(env()->args, 27);
 	ft_dlstfree(&(env()->args), del);
@@ -42,8 +67,8 @@ void	gestion_int(int key)
 
 void	gestion(int key)
 {
-	ft_fdprintf(1, "\n%ld a recu le signal %d (%s)\n",
-			(long)getpid(), key, sys_siglist[key]);
+	ft_fdprintf(2, "\n%ld a recu le signal %d (%s)   [%d]\n",
+			(long)getpid(), key, sys_siglist[key], ttyslot());
 }
 
 void	gestion_winch(int key)
@@ -63,7 +88,7 @@ void	gestion_signal(void)
 	signal(SIGQUIT, gestion_int);
 	signal(SIGWINCH, gestion_winch);
 //	signal(SIGTTIN, gestion_susp);
-	signal(SIGTTOU, gestion_susp);
+//	signal(SIGTTOU, gestion_susp);
 	while (++i < NSIG)
 	{
 		if (i != SIGTSTP && i != SIGCONT && i != SIGINT && i != SIGQUIT && i != SIGWINCH && i != SIGTTOU && i != SIGTTIN)
