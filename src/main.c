@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:56:54 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:48:07 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int				main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	args = initialisation(argc, argv);
+	gestion_signal(args);
 	key = boucle(&args);
 	term_original();
 	gestion_end(args, key);

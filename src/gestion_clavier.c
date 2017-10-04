@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 22:36:27 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:51:40 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:45:19 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	gestion_fleche(int key)
 	else if (key == KEY_FL)
 		e->curseur = ((e->curseur - 1) < 0) ? e->nbr_args - 1 : e->curseur - 1;
 	else if (key == KEY_FU)
-		e->curseur = ((e->curseur - e->args_byline) > 0)
+		e->curseur = ((e->curseur - e->args_byline) >= 0)
 			? e->curseur - e->args_byline : e->curseur;
 	else if (key == KEY_FD)
 		e->curseur = ((e->curseur + e->args_byline) > (e->nbr_args - 1))

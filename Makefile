@@ -46,7 +46,8 @@ SRC_NAME	=	main.c\
 				aff.c\
 				boucle.c\
 				args_aff.c\
-				gestion_clavier.c
+				gestion_clavier.c\
+				gestion_signal.c
 
 INC_NAME	=	ft_select.h
 

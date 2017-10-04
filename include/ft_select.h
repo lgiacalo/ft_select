@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:53:09 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/04 15:49:28 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void				gestion_fleche(int key);
 void				gestion_space(t_dlist *args, int key);
 void				gestion_delete(t_dlist **alst, int key);
 void				gestion_end(t_dlist *args, int key);
+
+void				gestion_signal(t_dlist *args);
 
 void				ft_selectprint(t_select *lst);
 void				ft_dlstprint(t_dlist *lst);
