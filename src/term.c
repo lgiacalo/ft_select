@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/04 22:11:26 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 00:15:09 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	mode_non_canonique(void)
 	t = term();
 	t->term.c_lflag &= ~(ICANON);
 	t->term.c_lflag &= ~(ECHO);
-	t->term.c_lflag += TOSTOP;
+//	t->term.c_lflag += TOSTOP;
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
