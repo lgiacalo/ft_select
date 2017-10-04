@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:48:29 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/04 18:27:10 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/04 22:12:22 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,23 @@ void	gestion_winch(int key)
 
 void	gestion_signal(void)
 {
+	int	i;
+
+	i = 0;
 	signal(SIGTSTP, gestion_susp);
 	signal(SIGCONT, gestion_cont);
 	signal(SIGINT, gestion_int);
 	signal(SIGQUIT, gestion_int);
 	signal(SIGWINCH, gestion_winch);
+//	signal(SIGTTIN, gestion_susp);
+//	signal(SIGTTOU, SIG_IGN);
+	while (++i < NSIG)
+	{
+//		if (i != SIGTSTP && i != SIGCONT && i != SIGINT && i != SIGQUIT && i != SIGWINCH && i != SIGTTOU && i != SIGTTIN)
+		if (i != SIGTSTP && i != SIGCONT && i != SIGINT && i != SIGQUIT && i != SIGWINCH)
+			signal(i, gestion);
+
+	}
 }
 
 
