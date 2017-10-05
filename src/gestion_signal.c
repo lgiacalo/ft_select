@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:48:29 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 01:25:02 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:03:36 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	gestion_susp(int key)
 //		return ;
 	if (!isatty(0))
 	{
-		ft_fdprintf(1, "\n je suis dans isatty susp\n");
+		ft_fdprintf(2, "\n je suis dans isatty susp\n");
 		return ;
 	}
 	ft_fdprintf(2, "\nJe suis dans SIGTSTP [%d]\n", ttyslot);
@@ -44,7 +44,7 @@ void	gestion_cont(int key)
 	(void)key;
 	if (!isatty(0))
 	{
-		ft_fdprintf(1, "\n je suis dans isatty cont\n");
+		ft_fdprintf(2, "\n je suis dans isatty cont\n");
 		return ;
 	}
 	ft_fdprintf(2, "\nJe suis dans SIGCONT [%d]\n", ttyslot());
@@ -61,7 +61,7 @@ void	gestion_int(int key)
 	term_original();
 	gestion_end(env()->args, 27);
 	ft_dlstfree(&(env()->args), del);
-	ft_fdprintf(1, "\n====== FIN 2 ======\n"); //
+	ft_fdprintf(2, "\n====== FIN 2 ======\n"); //
 	exit(EXIT_SUCCESS);	
 }
 
@@ -74,7 +74,7 @@ void	gestion(int key)
 void	gestion_winch(int key)
 {
 	(void)key;
-	ft_fdprintf(1, "\nGerer le redimensionnemenmt de la fenetre !!!\n");
+	ft_fdprintf(2, "\nGerer le redimensionnemenmt de la fenetre !!!\n");
 }
 
 void	gestion_signal(void)
@@ -97,5 +97,3 @@ void	gestion_signal(void)
 
 	}
 }
-
-

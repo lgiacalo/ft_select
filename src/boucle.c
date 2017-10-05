@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:37:47 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/04 17:06:41 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:02:40 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		boucle(t_dlist **args)
 		affichage_args(*args);
 		key = 0;
 		read(0, &key, sizeof(int));
-		ft_fdprintf(1, "\n[%d]\n", key); ///
+		ft_fdprintf(2, "\n[%d]\n", key); ///
 		gestion_fleche(key);
 		gestion_space(*args, key);
 		gestion_delete(args, key);
