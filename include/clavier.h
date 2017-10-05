@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:41:45 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 21:02:53 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:05:46 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 
 # define AFF_SL			"\e[4m"
 # define AFF_VDI		"\e[7m"
+# define AFF_NOP		"\e[0m"
 
 #endif

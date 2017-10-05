@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:37:06 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 16:02:33 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 17:05:57 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	affichage_args(t_dlist *args)
 		if (FT_SELECT(args)->selected)
 			ft_putstr_fd(AFF_VDI, 2);
 		ft_fdprintf(2, "%s", FT_SELECT(args)->str);
-		ft_putstr_fd("\e[0m", 2);
+		ft_putstr_fd(AFF_NOP, 2);
 		ft_fdprintf(2, "%-*c",
 				env()->padding - ft_strlen(FT_SELECT(args)->str), ' ');
 		i++;

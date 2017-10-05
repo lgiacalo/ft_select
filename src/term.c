@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 00:15:09 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/05 19:03:03 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		verif_tcsetattr(struct termios term)
 	struct termios	ret;
 
 	i = -1;
-	if (tcgetattr(STDIN_FILENO, &ret) == -1)
+	if (tcgetattr(STDERR_FILENO, &ret) == -1)
 		error("tcgetattr: Erreur", 0);
 	if (ret.c_iflag != term.c_iflag || ret.c_oflag != term.c_oflag\
 		|| ret.c_cflag != term.c_cflag || ret.c_lflag != term.c_lflag\
@@ -41,7 +41,7 @@ void	term_original(void)
 {
 	if (term())
 	{
-		if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &term()->orig_term) == -1)
+		if (tcsetattr(STDERR_FILENO, TCSANOW, &term()->orig_term) == -1)
 			error("Restauration terminal: Erreur", 0);
 		if (!verif_tcsetattr(term()->orig_term))
 			term_original();
@@ -55,10 +55,9 @@ void	mode_non_canonique(void)
 	t = term();
 	t->term.c_lflag &= ~(ICANON);
 	t->term.c_lflag &= ~(ECHO);
-//	t->term.c_lflag += TOSTOP;
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
+	if (tcsetattr(STDERR_FILENO, TCSANOW, &t->term) == -1)
 		error("Erreur mode non canonique", 0);
 	if (!verif_tcsetattr(t->term))
 		mode_non_canonique();
@@ -74,7 +73,7 @@ void	term_init(void)
 		error("Variable \"TERM\": vide ou inexistant", 0);
 	if (tgetent(NULL, name_term) <= 0)
 		error("tgetent: base de donnee introuvable ou term non defini", 0);
-	if (tcgetattr(STDIN_FILENO, &t->orig_term) == -1)
+	if (tcgetattr(STDERR_FILENO, &t->orig_term) == -1)
 		error("tcgetattr: Erreur", 0);
 	t->term = t->orig_term;
 	mode_non_canonique();
