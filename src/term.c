@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/06 23:56:02 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 00:39:52 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	term_original(void)
 		if (!verif_tcsetattr(t->orig_term))
 			term_original();
 	}
-	t->term = t->orig_term;
+//	t->term = t->orig_term;
 }
 
 void	mode_non_canonique(void)
@@ -84,8 +84,9 @@ void	term_init(void)
 	t->term.c_lflag &= ~(ECHO);
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, &t->term) == -1)
-		error("Erreur mMMode non canonique", 0);
+	tcsetattr(0, TCSADRAIN, &t->term);
+//	if (tcsetattr(0, TCSADRAIN, &t->term) == -1)
+//		error("Erreur mMMode non canonique", 0);
 }
 
 /*
