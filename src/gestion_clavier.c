@@ -6,12 +6,12 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 22:36:27 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/04 15:45:19 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 01:31:03 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
+/*
 void	gestion_end(t_dlist *args, int key)
 {
 	if (key == KEY_RETURN)
@@ -67,3 +67,4 @@ void	gestion_delete(t_dlist **alst, int key)
 			env()->curseur = env()->nbr_args - 1;
 	}
 }
+*/

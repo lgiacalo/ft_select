@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:37:06 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/06 22:42:38 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 01:32:17 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	affichage_args(t_dlist *args)
 				env()->padding - ft_strlen(FT_SELECT(args)->str), ' ');
 		i++;
 		args = FT_DLST_NEXT(args);
-		if ((i % (env()->args_byline)) == 0)
+		if ((i % (env()->args_bycol)) == 0)
 			ft_fdprintf(0, "\n");
 	}
 }
