@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 00:12:28 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 01:21:15 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void				error(char *msg, int restaure);
 t_term				*term(void);
 void				term_init(void);
 void				term_original(void);
-void				mode_non_canonique(void);
 int					verif_tcsetattr(struct termios term);
 
 t_env				*env(void);

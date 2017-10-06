@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/07 00:39:52 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 01:21:57 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,6 @@ void	term_original(void)
 		if (!verif_tcsetattr(t->orig_term))
 			term_original();
 	}
-//	t->term = t->orig_term;
-}
-
-void	mode_non_canonique(void)
-{
-	t_term *t;
-
-	t = term();
-	t->term.c_lflag &= ~(ICANON);
-	t->term.c_lflag &= ~(ECHO);
-	t->term.c_cc[VMIN] = 1;
-	t->term.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSANOW, &t->term) == -1)
-		error("Erreur mode non canonique", 0);
-	if (!verif_tcsetattr(t->term))
-		mode_non_canonique();
 }
 
 void	term_init(void)
@@ -85,12 +69,4 @@ void	term_init(void)
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSADRAIN, &t->term);
-//	if (tcsetattr(0, TCSADRAIN, &t->term) == -1)
-//		error("Erreur mMMode non canonique", 0);
 }
-
-/*
-**	TODO: OK ! avec recursive un peu risque :/
-**	Fonction tcsetattr : indique une reussite si au moins un changement effectue
-**		Donc a re verifier avec tcgetattr !! voir livre linux
-*/

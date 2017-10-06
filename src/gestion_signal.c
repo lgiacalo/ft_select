@@ -6,31 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:48:29 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/07 00:39:42 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 01:22:23 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-void	gestion_susp(int key)
-{
-	(void)key;
-
-	ft_putstr_fd(tgetstr("te", NULL), 0);
-	term_original();
-	ioctl(0, TIOCSTI, "\032");
-	signal(SIGTSTP, SIG_DFL);
-}
-
-void	gestion_cont(int key)
-{
-	(void)key;
-
-	signal(SIGTSTP, gestion_susp);
-	term_init();
-	ft_putstr_fd(tgetstr("ti", NULL), 0);
-	affichage_args(env()->args);
-}
 
 void	gestion_int(int key)
 {
@@ -40,7 +20,25 @@ void	gestion_int(int key)
 	term_original();
 	gestion_end(env()->args, 27);
 	ft_dlstfree(&(env()->args), del);
-	exit(EXIT_SUCCESS);	
+	exit(EXIT_SUCCESS);
+}
+
+void	gestion_susp(int key)
+{
+	(void)key;
+	ft_putstr_fd(tgetstr("te", NULL), 0);
+	term_original();
+	ioctl(0, TIOCSTI, "\032");
+	signal(SIGTSTP, SIG_DFL);
+}
+
+void	gestion_cont(int key)
+{
+	(void)key;
+	signal(SIGTSTP, gestion_susp);
+	term_init();
+	ft_putstr_fd(tgetstr("ti", NULL), 0);
+	affichage_args(env()->args);
 }
 
 void	gestion_winch(int key)
@@ -51,16 +49,9 @@ void	gestion_winch(int key)
 
 void	gestion_signal(void)
 {
-	int	i;
-
-	i = 0;
 	signal(SIGTSTP, gestion_susp);
 	signal(SIGCONT, gestion_cont);
-//	signal(SIGTTIN, gestion_susp);
-//	signal(SIGTTOU, gestion_out);
-
 	signal(SIGWINCH, gestion_winch);
-
 	signal(SIGINT, gestion_int);
 	signal(SIGQUIT, gestion_int);
 	signal(SIGHUP, gestion_int);
