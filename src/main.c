@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 16:03:38 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/06 23:01:37 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ int				main(int argc, char **argv)
 		return (0);
 	args = initialisation(argc, argv);
 	gestion_signal();
+	ft_putstr_fd(tgetstr("ti", NULL), 0);
 	key = boucle(&args);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
 	term_original();
 	gestion_end(args, key);
 	ft_dlstfree(&args, del);
-	ft_fdprintf(2, "\n====== FIN ======\n"); //
+	ft_fdprintf(0, "\n====== FIN ======\n"); //
 	return (EXIT_SUCCESS);
 }
 

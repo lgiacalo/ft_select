@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 19:03:03 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/06 23:56:02 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		verif_tcsetattr(struct termios term)
 	struct termios	ret;
 
 	i = -1;
-	if (tcgetattr(STDERR_FILENO, &ret) == -1)
+	if (tcgetattr(0, &ret) == -1)
 		error("tcgetattr: Erreur", 0);
 	if (ret.c_iflag != term.c_iflag || ret.c_oflag != term.c_oflag\
 		|| ret.c_cflag != term.c_cflag || ret.c_lflag != term.c_lflag\
@@ -39,13 +39,17 @@ int		verif_tcsetattr(struct termios term)
 
 void	term_original(void)
 {
-	if (term())
+	t_term	*t;
+
+	t = term();
+	if (t)
 	{
-		if (tcsetattr(STDERR_FILENO, TCSANOW, &term()->orig_term) == -1)
+		if (tcsetattr(0, TCSANOW, &(t->orig_term)) == -1)
 			error("Restauration terminal: Erreur", 0);
-		if (!verif_tcsetattr(term()->orig_term))
+		if (!verif_tcsetattr(t->orig_term))
 			term_original();
 	}
+	t->term = t->orig_term;
 }
 
 void	mode_non_canonique(void)
@@ -57,7 +61,7 @@ void	mode_non_canonique(void)
 	t->term.c_lflag &= ~(ECHO);
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
-	if (tcsetattr(STDERR_FILENO, TCSANOW, &t->term) == -1)
+	if (tcsetattr(0, TCSANOW, &t->term) == -1)
 		error("Erreur mode non canonique", 0);
 	if (!verif_tcsetattr(t->term))
 		mode_non_canonique();
@@ -73,10 +77,15 @@ void	term_init(void)
 		error("Variable \"TERM\": vide ou inexistant", 0);
 	if (tgetent(NULL, name_term) <= 0)
 		error("tgetent: base de donnee introuvable ou term non defini", 0);
-	if (tcgetattr(STDERR_FILENO, &t->orig_term) == -1)
+	if (tcgetattr(0, &(t->term)) == -1)
 		error("tcgetattr: Erreur", 0);
-	t->term = t->orig_term;
-	mode_non_canonique();
+	t->orig_term = t->term;
+	t->term.c_lflag &= ~(ICANON);
+	t->term.c_lflag &= ~(ECHO);
+	t->term.c_cc[VMIN] = 1;
+	t->term.c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSADRAIN, &t->term) == -1)
+		error("Erreur mMMode non canonique", 0);
 }
 
 /*
