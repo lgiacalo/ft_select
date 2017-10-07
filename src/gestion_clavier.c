@@ -6,18 +6,25 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 22:36:27 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/07 01:31:03 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 22:22:49 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-/*
+
 void	gestion_end(t_dlist *args, int key)
 {
 	if (key == KEY_RETURN)
 		aff_args_end(args);
 }
 
+
+void	gestion_fleche(int key)
+{
+	(void)key;
+}
+
+/*
 void	gestion_fleche(int key)
 {
 	t_env	*e;
@@ -34,6 +41,7 @@ void	gestion_fleche(int key)
 		e->curseur = ((e->curseur + e->args_byline) > (e->nbr_args - 1))
 			? e->curseur : (e->curseur + e->args_byline);
 }
+*/
 
 void	gestion_space(t_dlist *args, int key)
 {
@@ -67,4 +75,4 @@ void	gestion_delete(t_dlist **alst, int key)
 			env()->curseur = env()->nbr_args - 1;
 	}
 }
-*/
+

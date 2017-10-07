@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/07 01:21:15 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/07 22:20:25 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_env
 	struct winsize	w;
 	int				nbr_args;
 	int				padding;
-	int				args_byline;
+	int				nbr_col;
 	int				curseur;
 	t_dlist			*args;
 }					t_env;
