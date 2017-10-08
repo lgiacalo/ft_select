@@ -6,86 +6,43 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:48:29 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 19:32:15 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/08 19:09:40 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-extern const char * const sys_siglist[];
-
-void	gestion(int key)
-{
-	ft_fdprintf(2, "\n%ld a recu le signal %d (%s)   [%d]\n",
-			(long)getpid(), key, sys_siglist[key], ttyslot());
-}
-
 void	gestion_susp(int key)
 {
 	(void)key;
-//	if (!isatty(1))
-//		return ;
-	ft_fdprintf(2, "\nJe suis dans SIGTSTP [%d][%d]\n", ttyslot, key);
-	if (key == SIGTTOU)
-	{
-		ft_fdprintf(2, "Je suis dans susp avec sigttou\n");
-		return ;
-	}
-	if (!isatty(0))
-	{
-		ft_fdprintf(2, "\n je suis dans isatty susp\n");
-		return ;
-	}
-	ioctl(0, TIOCSTI, "\032");
+//	ft_fdprintf(2, "\nJe suis dans SIGTSTP [%d][%d]\n", ttyslot, key);
 	term_original();
+	ioctl(0, TIOCSTI, "\032");
 	signal(SIGTSTP, SIG_DFL);
-//	signal(SIGTTOU, gestion_susp);
-//	signal(SIGTTIN, gestion_susp);
-}
-
-void	gestion_out(int key)
-{
-
-	ft_fdprintf(2, "\nJe suis dans SIGTOUTT [%d][%d]\n", ttyslot(), key);
-	(void)key;
-	gestion_susp(SIGTSTP);
-//	signal(SIGTSTP, SIG_DFL);
-//	ioctl(0, TIOCSTI, "\032");
 }
 
 void	gestion_cont(int key)
 {
 	(void)key;
-	if (!isatty(0))
-	{
-		ft_fdprintf(2, "\n je suis dans isatty cont\n");
-		return ;
-	}
-	ft_fdprintf(2, "\nJe suis dans SIGCONT [%d][%d]\n", ttyslot(), key);
-//	signal(SIGTTIN, SIG_IGN);
-//	if (key != SIGTTOU)
-//	{
-		mode_non_canonique();
-		affichage_args(env()->args);
-//	}
-//	signal(SIGTSTP, gestion_susp);
+	term_init();
+	affichage_args(env()->args);
+	signal(SIGTSTP, gestion_susp);
 }
 
 void	gestion_int(int key)
 {
 	(void)key;
-	ft_fdprintf(2, "\nJe suis dans SIGINT [%d]\n", key);
+//	ft_fdprintf(2, "\nJe suis dans SIGINT [%d]\n", key);
 	term_original();
 	gestion_end(env()->args, 27);
 	ft_dlstfree(&(env()->args), del);
-	ft_fdprintf(2, "\n====== FIN 2 ======\n"); //
 	exit(EXIT_SUCCESS);	
 }
 
 void	gestion_winch(int key)
 {
 	(void)key;
-	ft_fdprintf(2, "\nGerer le redimensionnemenmt de la fenetre !!!\n");
+	ft_fdprintf(0, "\nGerer le redimensionnemenmt de la fenetre !!!\n");
 }
 
 void	gestion_signal(void)
@@ -95,8 +52,6 @@ void	gestion_signal(void)
 	i = 0;
 	signal(SIGTSTP, gestion_susp);
 	signal(SIGCONT, gestion_cont);
-	signal(SIGTTIN, SIG_IGN);
-	signal(SIGTTOU, gestion_out);
 
 	signal(SIGWINCH, gestion_winch);
 

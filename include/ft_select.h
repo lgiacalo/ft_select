@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 00:12:28 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/08 19:01:50 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_term				*term(void);
 void				term_init(void);
 void				term_original(void);
 void				mode_non_canonique(void);
-int					verif_tcsetattr(struct termios term);
 
 t_env				*env(void);
 void				env_init(t_dlist *args);
@@ -76,5 +75,6 @@ void				gestion_signal(void);
 void				ft_selectprint(t_select *lst);
 void				ft_dlstprint(t_dlist *lst);
 void				ft_envprint(void);
+void				ft_termprint(struct termios term);
 
 #endif

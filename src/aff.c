@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/03 23:50:27 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/08 19:11:44 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void		ft_selectprint(t_select *lst)
 	ft_fdprintf(1, "Structure Select :\n");
 	ft_fdprintf(1, "\tStr	 	= [%s][%d]\n", lst->str, ft_strlen(lst->str));
 	ft_fdprintf(1, "\tSelectionne	= [%d]\n", lst->selected);
+}
+
+void		ft_termprint(struct termios term)
+{
+	ft_fdprintf(2, "Lflags = [%d]\n", term.c_lflag);
+	ft_fdprintf(2, "Iflags = [%d]\n", term.c_iflag);
+	ft_fdprintf(2, "Oflags = [%d]\n", term.c_oflag);
+	ft_fdprintf(2, "Cflags = [%d]\n", term.c_cflag);
 }
 
 void		ft_dlstprint(t_dlist *lst)
