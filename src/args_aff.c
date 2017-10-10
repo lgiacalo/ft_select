@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:37:06 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/08 19:02:21 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 18:45:15 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	affichage_args(t_dlist *args)
 {
 	int	i;
+	int	col;
 
 	i = 0;
-	ft_fdprintf(2, "\n");
+	col = 0;
 	while (i < env()->nbr_args && args)
 	{
 		if (i == env()->curseur)
@@ -30,8 +31,16 @@ void	affichage_args(t_dlist *args)
 				env()->padding - ft_strlen(FT_SELECT(args)->str), ' ');
 		i++;
 		args = FT_DLST_NEXT(args);
-		if ((i % (env()->args_byline)) == 0)
-			ft_fdprintf(0, "\n");
+//		if ((i % (env()->args_byline)) == 0)
+		if ((i % (env()->w.ws_row)) == 0)
+		{
+
+//			ft_putnbr_fd(tputs("UP", env()->padding, 0), 0);
+			ft_fdprintf(2, "MERDE\n");
+//			ft_fdprintf(0, "\n");
+
+		}
+		ft_fdprintf(0, "\n");
 	}
 }
 
