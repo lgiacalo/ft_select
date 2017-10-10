@@ -36,7 +36,7 @@ void	gestion_cont(int key)
 void	gestion_int(int key)
 {
 	(void)key;
-	ft_putstr_fd(tgetstr("ti", NULL), 0);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
 	term_original();
 	gestion_end(env()->args, 27);
 	ft_dlstfree(&(env()->args), del);

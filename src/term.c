@@ -6,9 +6,6 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/10/05 00:15:09 by lgiacalo         ###   ########.fr       */
-=======
 /*   Updated: 2017/10/08 18:50:36 by lgiacalo         ###   ########.fr       */
 >>>>>>> last
 /*                                                                            */
