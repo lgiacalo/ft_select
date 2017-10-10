@@ -35,8 +35,10 @@ void	mode_non_canonique(void)
 	t->term.c_lflag &= ~(ECHO);
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
-		error("Erreur mode non canonique", 0);
+
+	tcsetattr(STDIN_FILENO, TCSANOW, &t->term);
+//	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
+//		error("Erreur mode non canonique", 0);
 }
 
 void	term_init(void)
@@ -59,5 +61,5 @@ void	term_init(void)
 /*
 **	TODO: OK ! avec recursive un peu risque :/
 **	Fonction tcsetattr : indique une reussite si au moins un changement effectue
-**		Donc a re verifier avec tcgetattr !! voir livre linux
+**		Donc a re verifier avec tcgetattr !! SUPPRIME
 */

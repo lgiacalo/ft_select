@@ -15,7 +15,8 @@
 void	gestion_susp(int key)
 {
 	(void)key;
-//	ft_fdprintf(2, "\nJe suis dans SIGTSTP [%d][%d]\n", ttyslot, key);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
 	term_original();
 	ioctl(0, TIOCSTI, "\032");
 	signal(SIGTSTP, SIG_DFL);
@@ -25,14 +26,17 @@ void	gestion_cont(int key)
 {
 	(void)key;
 	term_init();
-	affichage_args(env()->args);
+//	ft_putstr_fd(tgetstr("te", NULL), 0);
 	signal(SIGTSTP, gestion_susp);
+	ft_putstr_fd(tgetstr("ti", NULL), 0);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	affichage_args(env()->args);
 }
 
 void	gestion_int(int key)
 {
 	(void)key;
-//	ft_fdprintf(2, "\nJe suis dans SIGINT [%d]\n", key);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
 	term_original();
 	gestion_end(env()->args, 27);
 	ft_dlstfree(&(env()->args), del);

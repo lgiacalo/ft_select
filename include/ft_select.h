@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/08 19:01:50 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 14:11:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "clavier.h"
 # include <termcap.h>
 # include <term.h>
+# include <signal.h>
 # include <termios.h>
 # include <sys/ioctl.h>
 
