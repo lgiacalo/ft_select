@@ -6,11 +6,12 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 16:03:38 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 14:06:24 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+#include <signal.h>
 
 static t_dlist	*initialisation(int argc, char **argv)
 {
@@ -29,13 +30,16 @@ int				main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	args = initialisation(argc, argv);
 	gestion_signal();
+	args = initialisation(argc, argv);
+	ft_putstr_fd(tgetstr("ti", NULL), 0);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
 	key = boucle(&args);
+	ft_putstr_fd(tgetstr("te", NULL), 0);
 	term_original();
 	gestion_end(args, key);
 	ft_dlstfree(&args, del);
-	ft_fdprintf(2, "\n====== FIN ======\n"); //
+	ft_fdprintf(1, "\n====== FIN ======\n"); //
 	return (EXIT_SUCCESS);
 }
 

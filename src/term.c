@@ -6,7 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/10/05 00:15:09 by lgiacalo         ###   ########.fr       */
+=======
+/*   Updated: 2017/10/08 18:50:36 by lgiacalo         ###   ########.fr       */
+>>>>>>> last
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +23,10 @@ t_term	*term(void)
 	return (&t);
 }
 
-int		verif_tcsetattr(struct termios term)
-{
-	int				i;
-	struct termios	ret;
-
-	i = -1;
-	ft_fdprintf(2, "\nJesuis dans verif_tcsetattr !!!\n");
-	if (tcgetattr(STDIN_FILENO, &ret) == -1)
-		error("tcgetattr: Erreur", 0);
-	if (ret.c_iflag != term.c_iflag || ret.c_oflag != term.c_oflag\
-		|| ret.c_cflag != term.c_cflag || ret.c_lflag != term.c_lflag\
-		|| ret.c_ispeed != term.c_ispeed || ret.c_ospeed != term.c_ospeed)
-		return (0);
-	while (++i < NCCS)
-		if (ret.c_cc[i] != term.c_cc[i])
-			return (0);
-	return (1);
-}
-
 void	term_original(void)
 {
-	if (term())
-	{
-		if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &term()->orig_term) == -1)
+	if (tcsetattr(STDIN_FILENO, TCSANOW, &term()->orig_term) == -1)
 			error("Restauration terminal: Erreur", 0);
-		if (!verif_tcsetattr(term()->orig_term))
-			term_original();
-	}
 }
 
 void	mode_non_canonique(void)
@@ -58,12 +38,9 @@ void	mode_non_canonique(void)
 	t->term.c_lflag &= ~(ECHO);
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
-	if (verif_tcsetattr(t->term))
-		return ;
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
-		error("Erreur mode non canonique", 0);
-	if (!verif_tcsetattr(t->term))
-		mode_non_canonique();
+	tcsetattr(STDIN_FILENO, TCSANOW, &t->term);
+//	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
+//		error("Erreur mode non canonique", 0);
 }
 
 void	term_init(void)
@@ -78,12 +55,13 @@ void	term_init(void)
 		error("tgetent: base de donnee introuvable ou term non defini", 0);
 	if (tcgetattr(STDIN_FILENO, &t->orig_term) == -1)
 		error("tcgetattr: Erreur", 0);
-	t->term = t->orig_term;
+	if (tcgetattr(STDIN_FILENO, &t->term) == -1)
+		error("tcgetattr: Erreur", 0);
 	mode_non_canonique();
 }
 
 /*
 **	TODO: OK ! avec recursive un peu risque :/
 **	Fonction tcsetattr : indique une reussite si au moins un changement effectue
-**		Donc a re verifier avec tcgetattr !! voir livre linux
+**		Donc a re verifier avec tcgetattr !! SUPPRIME
 */

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/05 00:12:28 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 14:11:16 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "clavier.h"
 # include <termcap.h>
 # include <term.h>
+# include <signal.h>
 # include <termios.h>
 # include <sys/ioctl.h>
 
@@ -53,7 +54,6 @@ t_term				*term(void);
 void				term_init(void);
 void				term_original(void);
 void				mode_non_canonique(void);
-int					verif_tcsetattr(struct termios term);
 
 t_env				*env(void);
 void				env_init(t_dlist *args);
@@ -76,5 +76,6 @@ void				gestion_signal(void);
 void				ft_selectprint(t_select *lst);
 void				ft_dlstprint(t_dlist *lst);
 void				ft_envprint(void);
+void				ft_termprint(struct termios term);
 
 #endif
