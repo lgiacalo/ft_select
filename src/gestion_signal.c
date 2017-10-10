@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 15:48:29 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/08 19:09:40 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 21:52:07 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	gestion_susp(int key)
 void	gestion_cont(int key)
 {
 	(void)key;
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
 	term_init();
-//	ft_putstr_fd(tgetstr("te", NULL), 0);
 	signal(SIGTSTP, gestion_susp);
 	ft_putstr_fd(tgetstr("ti", NULL), 0);
 	ft_putstr_fd(tgetstr("cl", NULL), 0);
