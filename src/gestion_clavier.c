@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 22:36:27 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/08 19:02:49 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:16:42 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	gestion_space(t_dlist *args, int key)
 	{
 		tmp = ft_dlstat(args, env()->curseur);
 		if (!FT_SELECT(tmp)->selected)
-		{
 			FT_SELECT(tmp)->selected = 1;
-			gestion_fleche(KEY_FR);
-		}
 		else
 			FT_SELECT(tmp)->selected = 0;
+		gestion_fleche(KEY_FR);
 	}
 }
 
