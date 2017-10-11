@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:37:47 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/11 12:14:42 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/11 13:02:37 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ void	window_sosmall(void)
 	}
 }
 
+void	gestion_bonus(t_dlist *args, int key)
+{
+	int	i;
+
+	i = -1;
+	if (key == 1 || key == 4)
+	{
+		while (++i < env()->nbr_args)
+		{
+			if (key == 1 && !FT_SELECT(args)->selected)
+				FT_SELECT(args)->selected = 1;
+			else if (key == 4 && FT_SELECT(args)->selected)
+				FT_SELECT(args)->selected = 0;
+			args = args->next;
+		}
+	}
+}
+
 int		boucle(t_dlist **args)
 {
 	int	key;
@@ -37,11 +55,11 @@ int		boucle(t_dlist **args)
 	{
 		key = 0;
 		read(0, &key, sizeof(int));
+		ft_fdprintf(1, "Valeur touche [%d]\n", key);
 		if (env()->args_byline != -1)
 		{
-			gestion_fleche(key);
-			gestion_space(*args, key);
-			gestion_delete(args, key);
+			gestion_bonus(*args, key);
+			gestion_clavier(args, key);
 			ft_putstr_fd(tgetstr("cl", NULL), 0);
 			affichage_args(*args);
 		}

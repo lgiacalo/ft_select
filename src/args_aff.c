@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 20:37:06 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/11 12:15:35 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/11 12:52:58 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,21 @@ void	affichage_args(t_dlist *args)
 void	aff_args_end(t_dlist *args)
 {
 	int		i;
+	int		s;
 	t_dlist	*tmp;
 
 	tmp = args;
 	i = 0;
+	s = 0;
 	while (i < env()->nbr_args && tmp)
 	{
 		if (FT_SELECT(tmp)->selected)
+		{
 			ft_fdprintf(1, "%s ", FT_SELECT(tmp)->str);
+			s++;
+		}
 		tmp = tmp->next;
 		i++;
 	}
+	(s != 0) ? ft_fdprintf(1, "\n") : 0;
 }

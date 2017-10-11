@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 22:36:27 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/11 12:16:18 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/11 12:52:11 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,37 @@ void	gestion_fleche(int key)
 			? 0 : (e->curseur + 1);
 }
 
-void	gestion_space(t_dlist *args, int key)
+void	gestion_space(t_dlist *args)
 {
 	t_dlist	*tmp;
 
-	if (key == KEY_SPACE)
-	{
-		tmp = ft_dlstat(args, env()->curseur);
-		if (!FT_SELECT(tmp)->selected)
-			FT_SELECT(tmp)->selected = 1;
-		else
-			FT_SELECT(tmp)->selected = 0;
-		gestion_fleche(KEY_FD);
-	}
+	tmp = ft_dlstat(args, env()->curseur);
+	if (!FT_SELECT(tmp)->selected)
+		FT_SELECT(tmp)->selected = 1;
+	else
+		FT_SELECT(tmp)->selected = 0;
+	gestion_fleche(KEY_FD);
 }
 
-void	gestion_delete(t_dlist **alst, int key)
+void	gestion_delete(t_dlist **alst)
 {
 	t_dlist	*tmp;
 
-	if (key == KEY_DELETE)
-	{
-		env()->nbr_args--;
-		tmp = ft_dlstat(*alst, env()->curseur);
-		if (tmp == *alst)
-			*alst = tmp->next;
-		ft_dlstdel(tmp, del);
-		if (env()->curseur > (env()->nbr_args - 1))
-			env()->curseur = env()->nbr_args - 1;
-	}
+	env()->nbr_args--;
+	tmp = ft_dlstat(*alst, env()->curseur);
+	if (tmp == *alst)
+		*alst = tmp->next;
+	ft_dlstdel(tmp, del);
+	if (env()->curseur > (env()->nbr_args - 1))
+		env()->curseur = env()->nbr_args - 1;
+}
+
+void	gestion_clavier(t_dlist **args, int key)
+{
+	if (key == KEY_SPACE)
+		gestion_space(*args);
+	else if (key == KEY_DELETE)
+		gestion_delete(args);
+	else
+		gestion_fleche(key);
 }
