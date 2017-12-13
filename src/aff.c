@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/08 19:11:44 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/10 16:35:37 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		ft_envprint(void)
 			envv->w.ws_row, envv->w.ws_col);
 	ft_fdprintf(1, "\tNombre args	= [%d]\n", envv->nbr_args);
 	ft_fdprintf(1, "\tPadding args	= [%d]\n\n", envv->padding);
+	ft_fdprintf(1, "\tArgs_byline	= [%d]\n\n", envv->args_byline);
 	ft_printf("============================================\n");
 	ft_printf("============================================\n\n");
 }

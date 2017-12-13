@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 06:36:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/08 18:50:36 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/11 12:16:43 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_term	*term(void)
 void	term_original(void)
 {
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &term()->orig_term) == -1)
-			error("Restauration terminal: Erreur", 0);
+		error("Restauration terminal: Erreur", 0);
 }
 
 void	mode_non_canonique(void)
@@ -35,8 +35,6 @@ void	mode_non_canonique(void)
 	t->term.c_cc[VMIN] = 1;
 	t->term.c_cc[VTIME] = 0;
 	tcsetattr(STDIN_FILENO, TCSANOW, &t->term);
-//	if (tcsetattr(STDIN_FILENO, TCSANOW, &t->term) == -1)
-//		error("Erreur mode non canonique", 0);
 }
 
 void	term_init(void)
@@ -55,9 +53,3 @@ void	term_init(void)
 		error("tcgetattr: Erreur", 0);
 	mode_non_canonique();
 }
-
-/*
-**	TODO: OK ! avec recursive un peu risque :/
-**	Fonction tcsetattr : indique une reussite si au moins un changement effectue
-**		Donc a re verifier avec tcgetattr !! SUPPRIME
-*/

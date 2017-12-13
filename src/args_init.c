@@ -6,13 +6,13 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:45:35 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/04 15:45:23 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/10/11 12:15:14 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void	ft_dlst_circulaire(t_dlist *alst, t_dlist *maillon)
+static void		ft_dlst_circulaire(t_dlist *alst, t_dlist *maillon)
 {
 	maillon->next = alst;
 	alst->prev = maillon;
@@ -30,7 +30,7 @@ static t_dlist	*ft_new_maillon(t_dlist **alst, char *argv)
 	return (maillon);
 }
 
-t_dlist		*args_init(char **argv, int argc)
+t_dlist			*args_init(char **argv, int argc)
 {
 	t_dlist		*alst;
 	t_dlist		*maillon;

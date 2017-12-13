@@ -41,6 +41,7 @@ SRC_NAME	=	main.c\
 				term.c\
 				env.c\
 				ft_dlist.c\
+				ft_dlist2.c\
 				args_init.c\
 				fonctions.c\
 				aff.c\

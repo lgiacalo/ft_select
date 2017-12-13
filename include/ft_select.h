@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 04:43:43 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/10/10 14:11:16 by                  ###   ########.fr       */
+/*   Updated: 2017/10/11 12:50:04 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,20 @@ void				mode_non_canonique(void);
 t_env				*env(void);
 void				env_init(t_dlist *args);
 void				ft_padding(t_dlist *args);
+void				env_windows(void);
 
 t_dlist				*args_init(char **argv, int argc);
 
 int					boucle(t_dlist **args);
 void				affichage_args(t_dlist *args);
+int					putchar_select(int a);
 void				del(void *content, size_t content_size);
 void				aff_args_end(t_dlist *args);
 
+void				gestion_clavier(t_dlist **args, int key);
 void				gestion_fleche(int key);
-void				gestion_space(t_dlist *args, int key);
-void				gestion_delete(t_dlist **alst, int key);
+void				gestion_space(t_dlist *args);
+void				gestion_delete(t_dlist **alst);
 void				gestion_end(t_dlist *args, int key);
 
 void				gestion_signal(void);
