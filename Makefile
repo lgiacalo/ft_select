@@ -81,7 +81,7 @@ export OPT
 
 ################################################################################
 
-all: $(NAME)
+all: lib $(NAME)
 
 ifeq ($(DEBUG), yes)
 	$(SPY)echo "================ DEBUG avec $(OPT) ! ================"
@@ -93,14 +93,18 @@ endif
 $(OBJ_PATH): 
 	$(SPY)mkdir $(OBJ_PATH) 2> /dev/null || true 
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC)
 	$(SPY)$(CC) $(OPT) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
 
 $(NAME): $(OBJ_PATH) $(OBJ) $(LIB)
 	$(SPY)$(CC) -ltermcap $(OPT) -o $(NAME) $(OBJ) $(LIB)
 	$(SPY)echo "$(COLOR)$(NAME)\t\t[OK]$(FINCOLOR)"
 
-$(LIB) :
+
+lib:
+	$(SPY)make -C libft/
+
+$(LIB):
 	$(SPY)make -C libft/
 
 clean:
@@ -125,6 +129,6 @@ norme:
 	$(SPY)norminette include/*.h
 
 
-.PHONY : all clean fclean re norme
+.PHONY : all clean fclean re norme exec lib
 
 ################################################################################
